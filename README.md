@@ -1,4 +1,3 @@
-````markdown
 # 🥗 ChangeOfBite
 
 **ChangeOfBite**는 사용자의 건강 정보(키, 체중, 알레르기, 질병 등)를 기반으로  
