@@ -1,0 +1,20 @@
+package com.ssafy.cob.domain.mealcalendar.service;
+
+import java.util.List;
+
+import com.ssafy.cob.domain.mealcalendar.model.dto.MealCalendar;
+
+public interface MealCalendarService {
+
+	public List<MealCalendar> getCalendar();
+
+	public boolean registMeal(MealCalendar mealCalendar, List<MultipartFile> files);
+
+	public List<MealCalendar> getCalendarByDate(String date);
+
+	public boolean removeMeal(int id);
+
+	public boolean modifyMeal(MealCalendar mealCalendar);
+
+	public List<MealCalendar> getCalendarByUserId(int userId);
+}

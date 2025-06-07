@@ -1,0 +1,26 @@
+[1mdiff --git a/COB/demo/src.zip b/COB/demo/src.zip[m
+[1mdeleted file mode 100644[m
+[1mindex 1ee2d55..0000000[m
+Binary files a/COB/demo/src.zip and /dev/null differ
+[1mdiff --git a/COB/demo/src/main/java/com/ssafy/cob/domain/community/controller/BoardRestController.java b/COB/demo/src/main/java/com/ssafy/cob/domain/community/controller/BoardRestController.java[m
+[1mindex 91cb77c..1c76ea2 100644[m
+[1m--- a/COB/demo/src/main/java/com/ssafy/cob/domain/community/controller/BoardRestController.java[m
+[1m+++ b/COB/demo/src/main/java/com/ssafy/cob/domain/community/controller/BoardRestController.java[m
+[36m@@ -84,17 +84,7 @@[m [mpublic class BoardRestController {[m
+ 	    return new ResponseEntity<>(HttpStatus.OK);[m
+ 	}[m
+ 	[m
+[31m-	@PostMapping("/posts/{postId}/like")[m
+[31m-	public ResponseEntity<Void> likePost(@PathVariable("postId") int id) {[m
+[31m-	    boardService.likePost(id);[m
+[31m-	    return new ResponseEntity<>(HttpStatus.OK);[m
+[31m-	}[m
+ [m
+[31m-	@PostMapping("/posts/{postId}/dislike")[m
+[31m-	public ResponseEntity<Void> dislikePost(@PathVariable("postId") int id) {[m
+[31m-	    boardService.dislikePost(id);[m
+[31m-	    return new ResponseEntity<>(HttpStatus.OK);[m
+[31m-	}[m
+ 	[m
+ 	[m
+ [m

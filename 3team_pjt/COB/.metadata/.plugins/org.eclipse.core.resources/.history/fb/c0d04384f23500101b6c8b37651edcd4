@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.cob.domain.user.model.dao.UserDao">
+
+	<insert id="insertUser" parameterType="user">
+	INSERT INTO users (username, email, phone, login_id, password, gender, height, weight, birth, disease, allergy, goal, created_at)
+	VALUES (#{username}, #{email}, #{phone}, #{loginId}, #{password}, #{gender}, #{height}, #{weight}, #{birth}, #{disease}, #{allergy}, #{goal}, now())
+	</insert>
+	
+	<select id="selectOne" parameterType="Map" resultType="user"> SELECT
+		id, username FROM users WHERE login_id = #{loginId} AND password = #{password}
+	</select>
+	
+	<select id="selectAll" resultType="user"> SELECT u.id id, u.password
+		password, u.name name, c.name curriculumName FROM users u, curriculum
+		c WHERE u.curriculum_code = c.code
+	</select>
+
+	<select id="selectUserById" resultType="user"> SELECT u.id id, u.password
+		password, u.name name, c.name curriculumName FROM users u, curriculum
+		c WHERE u.curriculum_code = c.code
+	</select>
+</mapper>

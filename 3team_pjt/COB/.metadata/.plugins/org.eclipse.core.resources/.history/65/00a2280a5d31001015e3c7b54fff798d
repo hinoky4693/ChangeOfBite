@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ssafy.cob.domain.mealcalendar.model.dao.MealCalendarDao">
+  	<select id="selectAll" resultType="MealCalendar">
+  		SELECT * FROM mealcalendar
+  	</select>
+  	
+  	<insert id="insertMeal" parameterType="MealCalendar">
+  		INSERT INTO mealcalendar (user_id, date, meal_time, total_calorie)
+		VALUES (#{userId}, #{date}, #{mealTime}, #{totalCalorie})
+  	</insert>
+  
+  	<select id="selectCalendarByDate" resultType="MealCalendar" parameterType="String">
+  		SELECT * FROM mealcalendar
+  		WHERE date = #{date}
+  	</select>
+  	
+  	<delete id="deleteMeal" parameterType="int">
+  		DELETE FROM mealcalendar
+  		WHERE id = #{id}
+  	</delete>
+  
+  	<update id="updateMeal" parameterType="MealCalendar">
+  		UPDATE mealcalendar
+  		SET date = #{date}, meal_time = #{mealTime}, total_calorie=#{totalCalorie}
+  		WHERE id = #{id}
+  	</update>
+  </mapper>

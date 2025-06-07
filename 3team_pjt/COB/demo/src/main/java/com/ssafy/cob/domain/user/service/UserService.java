@@ -1,0 +1,19 @@
+package com.ssafy.cob.domain.user.service;
+
+import java.util.List;
+
+import com.ssafy.cob.domain.user.model.dto.User;
+
+
+public interface UserService {
+	//전체 사용자 목록 불러오기
+	public List<User> getUserList();
+	//사용자 등록하기
+	public boolean signup(User user);
+	//로그인 하기
+	public User login(String loginId, String password);
+	//userId에 맞는 userId, userName 가져오기
+	public User findById(int userId);
+	
+	public int removeUser(int userId);
+}

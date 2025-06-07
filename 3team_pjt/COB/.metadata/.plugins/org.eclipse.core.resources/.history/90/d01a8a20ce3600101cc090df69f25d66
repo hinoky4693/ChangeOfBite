@@ -1,0 +1,54 @@
+package com.ssafy.cob.domain.mealcalendar.service;
+
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.ssafy.cob.domain.mealcalendar.model.dao.MealCalendarDao;
+import com.ssafy.cob.domain.mealcalendar.model.dto.MealCalendar;
+
+@Service
+public class MealCalendarServiceImpl implements MealCalendarService {
+
+	private final MealCalendarDao mealCalendarDao;
+	public MealCalendarServiceImpl(MealCalendarDao mealCalendarDao){
+		this.mealCalendarDao = mealCalendarDao;
+	}
+	
+	@Override
+	public List<MealCalendar> getCalendar() {
+		return mealCalendarDao.selectAll();
+	}
+
+	@Override
+	public boolean registMeal(MealCalendar mealCalendar) {
+		if (mealCalendarDao.insertMeal(mealCalendar) > 0) return true;
+		return false;
+	}
+
+	@Override
+	public List<MealCalendar> getCalendarByDate(String date) {
+		return mealCalendarDao.selectCalendarByDate(date);
+	}
+
+	@Override
+	public boolean removeMeal(int id) {
+		if (mealCalendarDao.deleteMeal(id) > 0) return true;
+		return false;
+	}
+
+	@Override
+	public boolean modifyMeal(MealCalendar mealCalendar) {
+		if(mealCalendarDao.updateMeal(mealCalendar) > 0) return true;
+		return false;
+	}
+
+	@Override
+	public List<MealCalendar> getCalendarByUserId(int userId) {
+		if(mealCalendarDao.selectCalendarByUserId(userId)) {
+			return null;
+		}
+		return false;
+	}
+}

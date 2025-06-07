@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.cob.domain.attachment.model.dao.FileDao">
+
+    <insert id="insertFile" parameterType="FileDto">
+        INSERT INTO attachment (
+            related_type,
+            related_id,
+            file_path,
+            original_name,
+            file_size,
+            mime_type,
+            file_extension,
+            uploaded_at
+        ) VALUES (
+            #{relatedType},
+            #{relatedId},
+            #{filePath},
+            #{originalName},
+            #{fileSize},
+            #{mimeType},
+            #{fileExtension},
+            NOW()
+        )
+    </insert>
+
+    <select id="selectFilesByRelated" resultType="FileDto">
+        SELECT * FROM attachment
+        WHERE related_type = #{relatedType}
+          AND related_id = #{relatedId}
+    </select>
+
+    <delete id="deleteFilesByRelated">
+        DELETE FROM attachment
+        WHERE related_type = #{relatedType}
+          AND related_id = #{relatedId}
+    </delete>
+
+    <delete id="deleteFileById">
+        DELETE FROM attachment
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

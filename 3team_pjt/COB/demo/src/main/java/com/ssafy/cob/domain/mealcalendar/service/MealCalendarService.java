@@ -1,0 +1,26 @@
+package com.ssafy.cob.domain.mealcalendar.service;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.ssafy.cob.domain.mealcalendar.model.dto.MealCalendar;
+
+public interface MealCalendarService {
+
+	public List<MealCalendar> getCalendar();
+
+	public boolean registMeal(List<MealCalendar> mealCalendar, int userId);
+
+	public boolean registMeal(MealCalendar mealCalendar, List<MultipartFile> files);
+
+	public List<MealCalendar> getCalendarByDate(String date);
+
+	public boolean removeMeal(int id);
+
+	public boolean modifyMeal(MealCalendar mealCalendar, List<MultipartFile> files);
+
+	void saveFiles(String relatedType, int relatedId, List<MultipartFile> files);
+
+	public List<MealCalendar> getCalendarByUserId(int userId);
+}

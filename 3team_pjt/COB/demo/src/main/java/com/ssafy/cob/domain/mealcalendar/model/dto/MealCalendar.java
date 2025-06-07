@@ -1,0 +1,117 @@
+package com.ssafy.cob.domain.mealcalendar.model.dto;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.ssafy.cob.domain.attachment.model.dto.FileDto;
+
+public class MealCalendar {
+	private int id;
+	private int userId;
+	private String date;
+	private String mealDescription;
+	private double totalCalorie;
+	private String createdAt;
+	private String mealTime;
+	private List<MultipartFile> attachs;
+	private List<FileDto> files;
+	
+	public MealCalendar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MealCalendar(int id, int userId, String date, String mealDescription, double totalCalorie, String createdAt,
+			String mealTime, List<MultipartFile> attachs, List<FileDto> files) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.date = date;
+		this.mealDescription = mealDescription;
+		this.totalCalorie = totalCalorie;
+		this.createdAt = createdAt;
+		this.mealTime = mealTime;
+		this.attachs = attachs;
+		this.files = files;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getMealDescription() {
+		return mealDescription;
+	}
+
+	public void setMealDescription(String mealDescription) {
+		this.mealDescription = mealDescription;
+	}
+
+	public double getTotalCalorie() {
+		return totalCalorie;
+	}
+
+	public void setTotalCalorie(double totalCalorie) {
+		this.totalCalorie = totalCalorie;
+	}
+
+	public String getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public String getMealTime() {
+		return mealTime;
+	}
+
+	public void setMealTime(String mealTime) {
+		this.mealTime = mealTime;
+	}
+
+	public List<MultipartFile> getAttachs() {
+		return attachs;
+	}
+
+	public void setAttachs(List<MultipartFile> attachs) {
+		this.attachs = attachs;
+	}
+
+	public List<FileDto> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<FileDto> files) {
+		this.files = files;
+	}
+
+	@Override
+	public String toString() {
+		return "MealCalendar [id=" + id + ", userId=" + userId + ", date=" + date + ", mealDescription="
+				+ mealDescription + ", totalCalorie=" + totalCalorie + ", createdAt=" + createdAt + ", mealTime="
+				+ mealTime + ", attachs=" + attachs + ", files=" + files + "]";
+	}
+}

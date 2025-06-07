@@ -1,0 +1,145 @@
+package com.ssafy.cob.domain.user.model.dto;
+
+public class User {
+	private int id;
+	private String username;
+	private String email;
+	private String phone;
+	private String loginId;
+	private String password;
+	private char gender;
+	private double height;
+	private double weight;
+	private int age;
+	private String disease;
+	private String allergy;
+	private String role;
+	private String goal;
+	private String created_at;
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public User(int id, String username, String nickname, String phone, String loginId, String password, char gender,
+			double height, double weight, int age, String disease, String allergy, String role, String goal,
+			String created_at) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.nickname = nickname;
+		this.phone = phone;
+		this.loginId = loginId;
+		this.password = password;
+		this.gender = gender;
+		this.height = height;
+		this.weight = weight;
+		this.age = age;
+		this.disease = disease;
+		this.allergy = allergy;
+		this.role = role;
+		this.goal = goal;
+		this.created_at = created_at;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getLoginId() {
+		return loginId;
+	}
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	public double getHeight() {
+		return height;
+	}
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getDisease() {
+		return disease;
+	}
+	public void setDisease(String disease) {
+		this.disease = disease;
+	}
+	public String getAllergy() {
+		return allergy;
+	}
+	public void setAllergy(String allergy) {
+		this.allergy = allergy;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getGoal() {
+		return goal;
+	}
+	public void setGoal(String goal) {
+		this.goal = goal;
+	}
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", nickname=" + nickname + ", phone=" + phone
+				+ ", loginId=" + loginId + ", password=" + password + ", gender=" + gender + ", height=" + height
+				+ ", weight=" + weight + ", age=" + age + ", disease=" + disease + ", allergy=" + allergy + ", role="
+				+ role + ", goal=" + goal + ", created_at=" + created_at + "]";
+	}
+	
+	
+	
+	
+	
+}

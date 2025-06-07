@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ssafy.cob.domain.community.model.dao.BoardDao">
+
+	<select id="selectAll" resultMap="boardWithFilesMap">
+		SELECT
+		p.*,
+		f.id AS file_id,
+		f.related_type, f.related_id, f.file_path,
+		f.original_name,
+		f.file_size, f.mime_type, f.file_extension,
+		f.uploaded_at
+		FROM post p
+		LEFT JOIN attachment f ON p.id = f.related_id AND f.related_type =
+		'POST'
+	</select>
+
+	<select id="selectOne" resultMap="boardWithFilesMap"
+		parameterType="int">
+		SELECT
+		p.*,
+		f.id AS file_id, f.related_type, f.related_id,
+		f.file_path,
+		f.original_name, f.file_size, f.mime_type,
+		f.file_extension,
+		f.uploaded_at
+		FROM post p
+		LEFT JOIN attachment f ON
+		p.id = f.related_id AND f.related_type = 'POST'
+		WHERE p.id = #{id}
+	</select>
+
+	<insert id="insertBoard" parameterType="Board"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO post (user_id, category, title, content, writer)
+		VALUES (#{userId}, #{category}, #{title}, #{content}, #{writer})
+	</insert>
+
+	<delete id="deleteBoard" parameterType="int">
+		DELETE
+		FROM post
+		WHERE id =
+		#{id}
+	</delete>
+
+	<update id="updateBoard" parameterType="Board">
+		UPDATE post
+		SET category =
+		#{category}, title = #{title}, content = #{content},
+		created_at = now()
+		WHERE id = #{id}
+	</update>
+
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE post
+		SET view_cnt
+		= view_cnt + 1
+		WHERE id = #{id}
+	</update>
+
+	<select id="search" parameterType="SearchCondition"
+		resultType="Board">
+		SELECT *
+		FROM post
+		<if test="key != null">
+			WHERE ${key} LIKE CONCAT('%', #{word}, '%')
+		</if>
+		<if test="orderBy != null">
+			ORDER BY ${orderBy} ${orderByDir};
+		</if>
+	</select>
+
+	<insert id="insertUserLike">
+ 		 INSERT INTO user_like (user_id, post_id)
+  		VALUES (#{userId}, #{postId})
+	</insert>
+
+	<delete id="deleteUserLike">
+  		DELETE FROM user_like
+  		WHERE user_id = #{userId} AND post_id = #{postId}
+		</delete>
+
+	<select id="hasUserLikedPost" resultType="boolean">
+  		SELECT COUNT(*) > 0
+  		FROM user_like
+  		WHERE user_id = #{userId} AND post_id = #{postId}
+	</select>
+
+	<update id="incrementLikeCount">
+  		UPDATE post SET likes = likes + 1 WHERE id = #{postId}
+	</update>
+
+	<update id="decrementLikeCount">
+ 		 UPDATE post SET likes = likes - 1 WHERE id = #{postId}
+	</update>
+
+	
+	<select id="selectLikedPostsByUserId" parameterType="int" resultType="Board">
+		SELECT p.*
+		FROM post p
+		JOIN user_like ul ON p.id = ul.post_id
+		WHERE ul.user_id = #{userId}
+	</select>
+
+	<resultMap id="boardWithFilesMap" type="Board">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="writer" column="writer" />		
+		<result property="category" column="category" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="createdAt" column="created_at" />
+		<result property="viewCnt" column="view_cnt" />
+		<result property="likes" column="likes" />
+		<result property="dislikes" column="dislikes" />
+
+		<collection property="files"
+			ofType="com.ssafy.cob.domain.attachment.model.dto.FileDto">
+			<id property="id" column="file_id" />
+			<result property="relatedType" column="related_type" />
+			<result property="relatedId" column="related_id" />
+			<result property="filePath" column="file_path" />
+			<result property="originalName" column="original_name" />
+			<result property="fileSize" column="file_size" />
+			<result property="mimeType" column="mime_type" />
+			<result property="fileExtension" column="file_extension" />
+			<result property="uploadedAt" column="uploaded_at" />
+		</collection>
+	</resultMap>
+
+</mapper>

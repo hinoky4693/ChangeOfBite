@@ -1,0 +1,18 @@
+package com.ssafy.cob.domain.user.model.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.ssafy.cob.domain.user.model.dto.User;
+
+public interface UserDao {
+	public List<User> selectAll();
+
+	public int insertUser(User user);
+
+	public User selectOne(Map<String, String> info);
+
+	public User selectUserById(int userId);
+
+	public int deleteUserById(int userId);
+}

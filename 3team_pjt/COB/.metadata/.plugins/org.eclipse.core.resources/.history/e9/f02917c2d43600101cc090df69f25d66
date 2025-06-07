@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ssafy.cob.domain.mealcalendar.model.dao.MealCalendarDao">
+	<select id="selectAll" resultType="MealCalendar">
+		SELECT
+		m.*,
+		f.id AS file_id,
+		f.related_type, f.related_id, f.file_path,
+		f.original_name,
+		f.file_size, f.mime_type, f.file_extension,
+		f.uploaded_at
+		FROM mealcalendar m
+		LEFT JOIN attachment f ON p.id = f.related_id AND f.related_type =
+		'POST'
+	</select>
+
+	<insert id="insertMeal" parameterType="MealCalendar">
+		INSERT INTO mealcalendar (user_id, date, meal_description, meal_time,
+		total_calorie)
+		VALUES (#{userId}, #{date}, #{mealTime},
+		#{mealDescription}, #{totalCalorie})
+	</insert>
+
+	<select id="selectCalendarByDate" resultType="MealCalendar"
+		parameterType="String">
+		SELECT * FROM mealcalendar
+		WHERE date = #{date}
+	</select>
+
+	<select id="selectCalendarByUserId" parameterType="int"
+		resultType="MealCalendar">
+		SELECT *
+		FROM mealcalendar
+		WHERE user_id = #{userId}
+	</select>
+
+	<delete id="deleteMeal" parameterType="int">
+		DELETE FROM mealcalendar
+		WHERE id = #{id}
+	</delete>
+
+	<update id="updateMeal" parameterType="MealCalendar">
+		UPDATE mealcalendar
+		SET date = #{date}, meal_description = #{mealDescription}, meal_time =
+		#{mealTime}, total_calorie=#{totalCalorie}
+		WHERE id = #{id}
+	</update>
+
+
+	<resultMap id="mealCalendarWithFilesMap" type="MealCalendar">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="date" column="date" />
+		<result property="mealDescription" column="meal_description" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="createdAt" column="created_at" />
+		<result property="viewCnt" column="view_cnt" />
+		<result property="likes" column="likes" />
+		<result property="dislikes" column="dislikes" />
+
+		<collection property="files"
+			ofType="com.ssafy.cob.domain.attachment.model.dto.FileDto">
+			<id property="id" column="file_id" />
+			<result property="relatedType" column="related_type" />
+			<result property="relatedId" column="related_id" />
+			<result property="filePath" column="file_path" />
+			<result property="originalName" column="original_name" />
+			<result property="fileSize" column="file_size" />
+			<result property="mimeType" column="mime_type" />
+			<result property="fileExtension" column="file_extension" />
+			<result property="uploadedAt" column="uploaded_at" />
+		</collection>
+	</resultMap>
+</mapper>
